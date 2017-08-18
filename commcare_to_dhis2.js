@@ -9,11 +9,16 @@ event(
     field("status", "COMPLETED"),
     field("storedBy", "AF-commcare-interface"),
     field("dataValues", function(state) {
+
+      const converter = function(x) {
+        return ( x == 1 ? 'TRUE' : 'FALSE' )
+      };
+
       return [
                 dataElement("wiiDcsQ5pdQ", dataValue("ageInMonths"))(state),
                 dataElement("RsZ4gQzWPWU", dataValue("childGender"))(state),
                 dataElement("L7aO70bcrbP", dataValue("childWeight"))(state),
-                dataElement("x1708y0C4C7", dataValue("feverFlag"))(state),
+                dataElement("x1708y0C4C7", converter(dataValue("feverFlag")))(state),
                 dataElement("ft7ak69zrDz", dataValue("verySevereDiseaseFlag"))(state),
                 dataElement("mxNluxv7LWg", dataValue("oedemaFlag"))(state),
                 dataElement("hs3Wugcy4mt", dataValue("MUACFlag"))(state),
