@@ -2,7 +2,10 @@ event(
   fields( 
     field("program", "GaOaL76FraA"), 
     field("orgUnit", dataValue("userLocationOrgUnitID")), 
-    field("eventDate", dataValue("date_closed"))[:10], 
+    field("eventDate", function(state) {
+      // Here we only take the first 10 digits of CommCare's "date_closed" string.
+      return state.data.date_closed.substring(0, 10);
+    }), 
     field("status", "COMPLETED"), 
     field("storedBy", "AF-commcare-interface"), 
     field("dataValues", function(state) { 
